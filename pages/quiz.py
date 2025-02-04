@@ -5,7 +5,11 @@ from datetime import datetime, timedelta
 import time
 import threading
 
-client = OpenAI(api_key=api_key)
+if "api_key" not in st.session_state:
+    st.error("No API Key found. Please enter it on the Home page first.")
+    st.stop()
+
+client = OpenAI(api_key=st.session_state["api_key"])
 
 def generate_quiz(topic, level):
     question_types = {
