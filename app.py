@@ -1,5 +1,5 @@
 import streamlit as st
-
+from openai import OpenAI
 # Sidebar Navigation
 menu = st.sidebar.radio("Navigation", ["Home", "Take Quiz", "Dashboard"])
 
