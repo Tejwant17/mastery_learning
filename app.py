@@ -12,11 +12,11 @@ if menu == "Home":
 
     # If an API key is provided either through environment or input, initialize OpenAI client
     if api_key:
-        client = OpenAI(api_key=api_key) # Initialize with the provided API key
+        st.session_state["api_key"] = api_key  # Store API key in session state
         st.write("Thanks! You can now begin the quiz, access it from the sidebar.")
     else:
         st.error("API Key is required to use this service.")
-        st.stop()  # Stop further execution if API key is not available
+        st.stop() # Stop further execution if API key is not available
 
 # Topic Selection
 elif menu == "Take Quiz":
