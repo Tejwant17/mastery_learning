@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import time
 import threading
 
+client = OpenAI(api_key=api_key)
 
 def generate_quiz(topic, level):
     question_types = {
