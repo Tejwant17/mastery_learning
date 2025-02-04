@@ -5,9 +5,6 @@ from datetime import datetime, timedelta
 import time
 import threading
 
-client = OpenAI(
-  api_key='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'# this is also the default, it can be omitted
-)
 
 def generate_quiz(topic, level):
     question_types = {
@@ -120,8 +117,13 @@ if current_index >= len(questions):  # When quiz ends
     total_questions = st.session_state.get("current_index", 0)
     score = st.session_state.get("score", 0)
     level = st.session_state.get("level", 1)
-
-    st.write(f"✅ **Your Score:** {score} / {total_questions} ({(score/total_questions) * 100:.2f}%)")
+  
+    if total_questions > 0:
+        percentage = (score / total_questions) * 100
+    else:
+        percentage = 0  # Avoid ZeroDivisionError
+      
+    st.write(f"✅ **Your Score:** {score} / {total_questions} ({percentage:.2f}%)")
 
     level_requirements = {
         1: {"min_questions": 8, "next_level": 2},
